@@ -17,18 +17,21 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700" rel="stylesheet">
 
     <!-- Bootstrap CSS File -->
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/> *@
 
 
     @* Не было в оригинале *@
     @* <!-- Libraries CSS Files --> *@
     @* <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet"> *@
 
+    
+
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/> *@
+    @* <link rel="stylesheet" href="~/Portfolio.styles.css" asp-append-version="true"/> *@
+    
     <!-- Main Stylesheet File -->
     <link href="~/css/style.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/Portfolio.styles.css" asp-append-version="true"/>
 </head>
 <body>
 <header>
@@ -41,22 +44,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">STANLEY</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">STANLEY</a>
                 @* TODO: FIX URL*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="work.html">Work</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Work">Work</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a asp-area="" asp-controller="Home" asp-action="About">About</a>
                     </li>
                     <li>
-                        <a href="blog.html">Blog</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Blog">Blog</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -126,12 +129,15 @@
 @* <script src="lib/easing/easing.min.js"></script> *@
 @* TODO: Разобраться с последними 2 либами *@
 
-<!-- Template Main Javascript File -->
-<script src="~/js/main.js"></script>
+
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @await RenderSectionAsync("Scripts", required: false)
+
+
+<!-- Template Main Javascript File -->
+<script src="~/js/main.js"></script>
 </body>
 </html>
