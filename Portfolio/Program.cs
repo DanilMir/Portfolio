@@ -16,7 +16,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 
-app.UseMiddleware<LoggerMiddleware>();
+app.UseLogger();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
