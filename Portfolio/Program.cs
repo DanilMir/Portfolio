@@ -1,3 +1,5 @@
+using Portfolio.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +15,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+app.UseMiddleware<LoggerMiddleware>();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
