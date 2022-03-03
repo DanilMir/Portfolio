@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Portfolio.Misc.Services.EmailSender;
+using Portfolio.Models;
 
 namespace Portfolio.Controllers;
 
@@ -21,8 +22,16 @@ public class Contacts : Controller
     [HttpGet]
     public IActionResult Get()
     {
-        var rng = new Random();
         var message = new Message(new string[] { "mirgayazov02@gmail.com" }, "Amogus", "Если ты это читаешь то ты LOX");
+        _emailService.SendEmail(message);
+        return Ok();
+    }
+
+    [HttpPost]
+    public IActionResult SendMessage([FromForm]ContactModel contact)
+    {
+        Console.WriteLine(contact.Message);
+        var message = new Message(new string[] { "mirgayazov02@gmail.com" }, contact.Subject, $"{contact.EMail}\n{contact.Name}\n{contact.Message}");
         _emailService.SendEmail(message);
         return Ok();
     }
