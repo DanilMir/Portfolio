@@ -39,8 +39,7 @@ public class Contacts : Controller
         // var message = new Message(new string[] { "mirgayazov02@gmail.com" }, contact.Subject, $"{contact.EMail}\n{contact.Name}\n{contact.Message}");
         // _emailService.SendEmail(message);
         // return Ok();
-
-
+        
         _context.Requests.Add(new Request()
         {
             RequestId = Guid.NewGuid(),
