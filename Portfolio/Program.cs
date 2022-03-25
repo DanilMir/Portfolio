@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.DataAccess;
 using Portfolio.Middleware;
 using Portfolio.Misc;
 using Portfolio.Misc.Services.EmailSender;
+using Portfolio.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,9 @@ var emailConfig = builder.Configuration
 
 builder.Services.AddDbContext<Context>(opts =>
     opts.UseNpgsql(builder.Configuration.GetConnectionString("sqlConnection")));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => { options.SignIn.RequireConfirmedEmail = true; })
+    .AddEntityFrameworkStores<Context>();
 
 builder.Services.AddSingleton(emailConfig);
 builder.Services.AddScoped<IEmailService, EmailService>();
@@ -36,6 +41,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
