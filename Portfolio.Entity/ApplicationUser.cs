@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace Portfolio.Models;
+namespace Portfolio.Entity;
+
 
 public class ApplicationUser : IdentityUser { }

@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Portfolio.Entity;
 
 namespace Portfolio.DataAccess;
 
-public class Context : DbContext
+public class Context : IdentityDbContext<ApplicationUser>
 {
     public Context(DbContextOptions options)
         :base(options)

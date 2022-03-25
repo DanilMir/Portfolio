@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.DataAccess;
+using Portfolio.Entity;
 using Portfolio.Middleware;
 using Portfolio.Misc;
 using Portfolio.Misc.Services.EmailSender;
