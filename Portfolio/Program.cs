@@ -18,7 +18,7 @@ var emailConfig = builder.Configuration
 builder.Services.AddDbContext<Context>(opts =>
     opts.UseNpgsql(builder.Configuration.GetConnectionString("sqlConnection")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => { options.SignIn.RequireConfirmedEmail = true; })
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => { options.SignIn.RequireConfirmedEmail = false; })
     .AddEntityFrameworkStores<Context>();
 
 builder.Services.AddSingleton(emailConfig);
@@ -35,7 +35,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 
-app.UseLogger();
+// app.UseLogger();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

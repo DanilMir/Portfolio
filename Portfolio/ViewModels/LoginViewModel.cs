@@ -14,5 +14,6 @@ public class LoginViewModel
 
     [Display(Name = "Запомнить?")] public bool RememberMe { get; set; }
 
-    public string ReturnUrl { get; set; }
+    [HiddenInput(DisplayValue = false)]
+    public string? ReturnUrl { get; set; }
 }

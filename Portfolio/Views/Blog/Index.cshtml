@@ -1,0 +1,34 @@
+@model IQueryable<Portfolio.Entity.Post>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+@foreach (var post in Model)
+{
+    <div id="grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <p>
+                        <img src="/img/user.png" width="50px" height="50px">
+                        <ba>Stanley Stinson</ba>
+                    </p>
+                    <p>
+                        <bd>January 18, 2014</bd>
+                    </p>
+                    <h4>@post.Title</h4>
+                    <p>@post.Content</p>
+                    <p>
+                        @* <a href="blog01.html">Continue Reading...</a> *@
+                    </p>
+                </div>
+
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+}
