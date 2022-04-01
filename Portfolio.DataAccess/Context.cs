@@ -11,4 +11,6 @@ public class Context : IdentityDbContext<ApplicationUser>
     {
     }
     public DbSet<Request> Requests { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+    public DbSet<Post> Posts { get; set; }
 }
