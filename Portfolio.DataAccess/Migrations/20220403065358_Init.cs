@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Portfolio.DataAccess.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -76,6 +76,18 @@ namespace Portfolio.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Requests", x => x.RequestId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Content = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,21 +197,27 @@ namespace Portfolio.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
+                name: "PostTag",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Content = table.Column<string>(type: "text", nullable: false),
-                    PostId = table.Column<Guid>(type: "uuid", nullable: true)
+                    PostsId = table.Column<Guid>(type: "uuid", nullable: false),
+                    TagsId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.PrimaryKey("PK_PostTag", x => new { x.PostsId, x.TagsId });
                     table.ForeignKey(
-                        name: "FK_Tags_Posts_PostId",
-                        column: x => x.PostId,
+                        name: "FK_PostTag_Posts_PostsId",
+                        column: x => x.PostsId,
                         principalTable: "Posts",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PostTag_Tags_TagsId",
+                        column: x => x.TagsId,
+                        principalTable: "Tags",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -240,9 +258,9 @@ namespace Portfolio.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tags_PostId",
-                table: "Tags",
-                column: "PostId");
+                name: "IX_PostTag_TagsId",
+                table: "PostTag",
+                column: "TagsId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -263,10 +281,10 @@ namespace Portfolio.DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Requests");
+                name: "PostTag");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -276,6 +294,9 @@ namespace Portfolio.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "Tags");
         }
     }
 }
