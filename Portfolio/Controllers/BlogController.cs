@@ -49,6 +49,6 @@ public class BlogController : Controller
         _context.Posts.Add(post);
         _context.SaveChanges();
 
-        return Ok();
+        return RedirectToAction("Index", "Blog");
     }
 }

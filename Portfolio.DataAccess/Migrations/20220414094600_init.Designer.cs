@@ -12,8 +12,8 @@ using Portfolio.DataAccess;
 namespace Portfolio.DataAccess.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220403065358_Init")]
-    partial class Init
+    [Migration("20220414094600_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

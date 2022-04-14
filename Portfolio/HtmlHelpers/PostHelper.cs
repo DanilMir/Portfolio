@@ -6,7 +6,7 @@ namespace Portfolio.HtmlHelpers;
 
 public static class PostHelper
 {
-    public static IHtmlContent DrawPost(this IHtmlHelper htmlHelper)
+    public static IHtmlContent DrawPost(this IHtmlHelper htmlHelper, Portfolio.Entity.Post post)
     {
         var div = new TagBuilder("div")
         {
@@ -62,8 +62,14 @@ public static class PostHelper
         p1.InnerHtml.AppendHtml(profile);
         p1.InnerHtml.AppendHtml(ba);
 
+        var content =
+            $"<div id=\"grey\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-8 col-lg-offset-2\"><p>" +
+            $"<img src=\"/img/user.png\" width=\"50px\" height=\"50px\"><ba>Stanley Stinson</ba></p>" +
+            $"<p><bd>January 18, 2014</bd></p><h4>{post.Title}</h4>" +
+            $"<p>{post.Content}</p><p>@* <a href=\"blog01.html\">Continue Reading...</a> *@</p></div></div><!-- /row -->" +
+            $"</div><!-- /container --></div>";
         
         //Todo: сделать
-        return div;
+        return new HtmlString(content);
     }
 }
